@@ -1,0 +1,264 @@
+
+
+ {% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}<title>Admindashboard-page</title>{% endblock title %}
+
+
+{% block content %}
+
+        <style>
+            
+             body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            
+            padding:  0 32px ;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: red;
+        }
+
+        /* Container */
+        .container {
+            padding: 2px;
+        }
+
+        /* Stats Cards */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .stat-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .stat-card h2 {
+            font-size: 2rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Table */
+        .requests h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+
+        /* Center container with margins */
+.container {
+    max-width: 1100px;  /* keeps content narrower */
+    margin: 0 auto;     /* centers horizontally */
+    padding: 40px 20px;
+}
+
+/* Separate sections visually */
+.stats, .requests {
+    margin-bottom: 50px; /* space between sections */
+}
+
+/* Add consistent section styling */
+section {
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust stat cards grid */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* Increase table max width and center it */
+.requests table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+        }
+
+        tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transition: background 0.3s ease;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .btn.green { background: #22c55e; }
+        .btn.blue { background: #3b82f6; }
+        .btn.red { background: #ef4444; }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    </style> 
+
+
+
+
+
+<body class="animate-section">
+
+    <!-- Navbar -->
+    <header class="navbar">
+    
+        <h1>⚙️ Admin Dashboard</h1>
+        <nav>
+            <a href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </header>
+
+        <br> <br> <br> <br> <br>
+
+    <main class="container">
+        <!-- Stats -->
+        <section class="stats ">
+            <div class="stat-card">
+                <p>Total Books</p>
+                <h2>85</h2>
+            </div>
+            <div class="stat-card">
+                <p>Pending Approvals</p>
+                <h2>6</h2>
+            </div>
+            <div class="stat-card">
+                <p>Approved Requests</p>
+                <h2>70</h2>
+            </div>
+        </section>
+
+        <!-- Requests Table -->
+        <section class="requests mx-20">
+            <h2>📚 Pending Book Requests</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Requested By</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>The Great Gatsby</td>
+                        <td>John Doe</td>
+                        <td>2025-08-10</td>
+                        <td>
+                            <button class="btn green">Approve</button>
+                            <button class="btn red">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Python Crash Course</td>
+                        <td>Jane Smith</td>
+                        <td>2025-08-09</td>
+                        <td>
+                            <button class="btn green">Approve</button>
+                            <button class="btn red">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+
+    
+
+
+</body>
+
+{% endblock content %}
+
+
+
+
+
+
